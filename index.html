@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Marks Calculator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📊 3D Marks Calculator</h1>
+            <p>Visualize your academic performance in stunning 3D</p>
+        </header>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Left Panel - Input -->
+            <div class="input-panel">
+                <div class="card">
+                    <h2>Enter Marks</h2>
+                    <div class="input-group">
+                        <input type="number" id="mark1" placeholder="Mark 1" value="80" min="0" max="100">
+                        <input type="number" id="mark2" placeholder="Mark 2" value="75" min="0" max="100">
+                        <input type="number" id="mark3" placeholder="Mark 3" value="90" min="0" max="100">
+                        <input type="number" id="mark4" placeholder="Mark 4" value="65" min="0" max="100">
+                        <input type="number" id="mark5" placeholder="Mark 5" value="85" min="0" max="100">
+                    </div>
+                    <button id="calculateBtn" class="btn btn-primary">Calculate & Visualize</button>
+                </div>
+
+                <!-- Results Panel -->
+                <div class="card results-card">
+                    <h2>Results</h2>
+                    <div class="result-item">
+                        <span class="label">Total Marks:</span>
+                        <span class="value" id="totalMarks">395</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Average:</span>
+                        <span class="value" id="averageMarks">79.0</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Highest:</span>
+                        <span class="value" id="highestMark">90</span>
+                    </div>
+                    <div class="result-item">
+                        <span class="label">Lowest:</span>
+                        <span class="value" id="lowestMark">65</span>
+                    </div>
+                    <div class="result-item grade">
+                        <span class="label">Grade:</span>
+                        <span class="value grade-value" id="gradeValue">A</span>
+                    </div>
+                </div>
+
+                <!-- Info Panel -->
+                <div class="card info-card">
+                    <h3>💡 Tips</h3>
+                    <ul>
+                        <li>Enter marks between 0-100</                        <li>Click "Calculate" to update 3D visualization</li>
+                        <li>Use mouse to rotate 3D view</li>
+                        <li>Scroll to zoom in/out</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- Right Panel - 3D Canvas -->
+            <div class="canvas-panel">
+                <div id="canvas3d" class="canvas-container"></div>
+                <div class="controls-info">
+                    <p>🖱️ Drag to rotate | 🔍 Scroll to zoom</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>
