@@ -1,0 +1,214 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: radial-gradient(circle at top, #1a1d3d, #0b1024 50%, #060914 100%);
+    color: #eaeefc;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
+    overflow: hidden;
+}
+
+body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    background: linear-gradient(120deg, rgba(93, 118, 255, 0.2), transparent 35%, rgba(0, 247, 255, 0.15));
+    pointer-events: none;
+}
+
+.container {
+    width: min(1200px, 100%);
+    background: rgba(14, 19, 38, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 28px;
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), inset 0 1px 0 rgba(255,255,255,0.08);
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    overflow: hidden;
+    position: relative;
+}
+
+.header {
+    text-align: center;
+    padding: 28px 20px 18px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.04), transparent);
+}
+
+.header h1 {
+    font-size: clamp(2rem, 3vw, 3rem);
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+    text-shadow: 0 0 20px rgba(116, 147, 255, 0.6);
+}
+
+.header p {
+    color: #b6c1ea;
+    font-size: 1rem;
+}
+
+.main-content {
+    display: grid;
+    grid-template-columns: 420px 1fr;
+    min-height: 680px;
+}
+
+.input-panel {
+    padding: 18px 18px 24px;
+    border-right: 1px solid rgba(255,255,255,0.06);
+    background: rgba(10,14,28,0.4);
+}
+
+.card {
+    background: linear-gradient(180deg, rgba(25,31,56,0.9), rgba(14,18,32,0.9));
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 22px;
+    padding: 20px 18px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.06), 0 18px 28px rgba(0,0,0,0.2);
+    margin-bottom: 16px;
+}
+
+.card h2, .card h3 {
+    margin-bottom: 18px;
+    color: #f4f7ff;
+}
+
+.input-group {
+    display: grid;
+    gap: 12px;
+}
+
+.input-group input {
+    width: 100%;
+    padding: 14px 16px;
+    border: 1px solid rgba(156,172,255,0.2);
+    border-radius: 12px;
+    background: rgba(8,12,22,0.85);
+    color: #f5f7ff;
+    font-size: 1rem;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.input-group input:focus {
+    border-color: rgba(80, 196, 255, 0.9);
+    box-shadow: 0 0 0 4px rgba(80,196,255,0.15);
+}
+
+.btn {
+    margin-top: 18px;
+    width: 100%;
+    border: none;
+    border-radius: 14px;
+    padding: 16px 18px;
+    font-size: 1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #5f8cff, #8a6dff, #18d2ff);
+    color: #fff;
+    box-shadow: 0 15px 30px rgba(94,116,255,0.45);
+}
+
+.results-card {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.result-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 10px;
+    border-radius: 12px;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid rgba(255,255,255,0.04);
+}
+
+.label {
+    color: #b7c2eb;
+}
+
+.value {
+    font-weight: 700;
+    color: #ffffff;
+    font-size: 1.12rem;
+}
+
+.grade {
+    background: linear-gradient(135deg, rgba(125, 92, 255, 0.18), rgba(0, 229, 255, 0.14));
+}
+
+.grade-value {
+    color: #7cf2ff;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.info-card ul {
+    list-style: none;
+    display: grid;
+    gap: 10px;
+    color: #ccd5ef;
+    line-height: 1.5;
+}
+
+.info-card li::before {
+    content: "• ";
+    color: #73deff;
+}
+
+.canvas-panel {
+    position: relative;
+    min-height: 100%;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+}
+
+.canvas-container {
+    flex: 1;
+    min-height: 580px;
+    border-radius: 24px;
+    background: radial-gradient(circle at center, rgba(27,38,68,0.85), rgba(8,12,20,0.95));
+    border: 1px solid rgba(255,255,255,0.05);
+    box-shadow: inset 0 0 25px rgba(124, 146, 255, 0.15);
+    overflow: hidden;
+}
+
+.controls-info {
+    text-align: center;
+    padding-top: 14px;
+    color: #bfd0ff;
+    font-size: 0.95rem;
+}
+
+@media (max-width: 900px) {
+    .main-content {
+        grid-template-columns: 1fr;
+    }
+
+    .input-panel {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+
+    .canvas-container {
+        min-height: 420px;
+    }
+}
