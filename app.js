@@ -61,6 +61,7 @@ function render3DChart(marks) {
     renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
     parent.appendChild(renderer.domElement);
 
+    // Lighting
     const ambientLight = new THREE.AmbientLight(0xffffff, 1.1);
     scene.add(ambientLight);
 
@@ -75,6 +76,7 @@ function render3DChart(marks) {
     const barSpacing = 4.5;
     const barWidth = 3.2;
 
+    // Create 3D bars
     marks.forEach((mark, index) => {
         const height = (mark / maxMark) * 16;
         const geometry = new THREE.BoxGeometry(barWidth, height, barWidth);
@@ -88,34 +90,9 @@ function render3DChart(marks) {
         const bar = new THREE.Mesh(geometry, material);
         bar.position.set((index - (marks.length - 1) / 2) * barSpacing, height / 2, 0);
         group.add(bar);
-
-        const label = document.createElement('div');
-        label.textContent = `${mark}`;
-        label.style.position = 'absolute';
-        label.style.fontSize = '13px';
-        label.style.fontWeight = '700';
-        label.style.color = '#f2f6ff';
-        label.style.left = '50%';
-        label.style.top = '50%';
-        label.style.transform = 'translate(-50%, -50%)';
-        label.style.pointerEvents = 'none';
-        label.style.opacity = '0.9';
-        parent.appendChild(label);
-
-        const barScreenPosition = new THREE.Vector3(
-            bar.position.x,
-            height + 1.2,
-            bar.position.z
-        );
-        barScreenPosition.project(camera);
-
-        const x = (barScreenPosition.x * 0.5 + 0.5) * parent.clientWidth;
-        const y = (-barScreenPosition.y * 0.5 + 0.5) * parent.clientHeight;
-
-        label.style.left = `${x}px`;
-        label.style.top = `${y}px`;
     });
 
+    // Floor
     const floor = new THREE.Mesh(
         new THREE.CylinderGeometry(18, 18, 1.2, 64),
         new THREE.MeshStandardMaterial({
@@ -129,6 +106,7 @@ function render3DChart(marks) {
     floor.position.y = -0.8;
     group.add(floor);
 
+    // Decorative ring
     const ring = new THREE.Mesh(
         new THREE.TorusGeometry(11.5, 0.12, 16, 120),
         new THREE.MeshStandardMaterial({ color: 0x5ec6ff, emissive: 0x2c6cff, transparent: true, opacity: 0.8 })
@@ -137,6 +115,7 @@ function render3DChart(marks) {
     ring.position.y = -0.1;
     scene.add(ring);
 
+    // Interaction
     let autoRotate = true;
     let mouseX = 0;
     let mouseY = 0;
@@ -156,6 +135,7 @@ function render3DChart(marks) {
         autoRotate = true;
     });
 
+    // Animation loop
     const animate = () => {
         requestAnimationFrame(animate);
 
@@ -172,6 +152,7 @@ function render3DChart(marks) {
 
     animate();
 
+    // Handle resize
     window.addEventListener('resize', () => {
         camera.aspect = parent.clientWidth / parent.clientHeight;
         camera.updateProjectionMatrix();
@@ -179,5 +160,11 @@ function render3DChart(marks) {
     });
 }
 
+// Event listeners
 calculateBtn.addEventListener('click', updateResults);
+marksInputs.forEach(input => {
+    input.addEventListener('change', updateResults);
+});
+
+// Initial render
 updateResults();
